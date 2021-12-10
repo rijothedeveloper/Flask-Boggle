@@ -42,11 +42,13 @@
 
 class Game {
     constructor() {
+        this.wordSet = new Set();
         this.input = document.getElementById("word-input");
         this.submitButton = document.querySelector("button");
         this.form = document.querySelector("#word_form");
         this.correctWordSec = document.querySelector("ul");
         this.scoreSec = document.getElementById("score-sec");
+        this.message = document.querySelector(".message");
         this.currentScore = 0;
         this.listenForEvents();
         this.setGameTime();
@@ -58,15 +60,22 @@ class Game {
 
     async handleSubmit(evt) {
         evt.preventDefault();
+        this.message.classList.add("message")
         const word = this.input.value;
         this.input.value = "";
-        const data = await this.checkWordFromAPI(word);
-        console.log(data.result);
-        if (data.result === "ok" ) {
-            const li = document.createElement("li");
-            li.innerText = word;
-            this.correctWordSec.append(li);
-            this.updateScore(word.length);
+        if (this.wordSet.has(word)) {
+            this.message.classList.remove("message")
+            return;
+        } else {
+            this.wordSet.add(word);
+            const data = await this.checkWordFromAPI(word);
+            console.log(data.result);
+            if (data.result === "ok" ) {
+                const li = document.createElement("li");
+                li.innerText = word;
+                this.correctWordSec.append(li);
+                this.updateScore(word.length);
+            }
         }
         
     }
