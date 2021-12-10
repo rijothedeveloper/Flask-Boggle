@@ -28,3 +28,9 @@ function updateScore(len) {
     currentScore += len;
     scoreSec.innerText = currentScore
 }
+
+function resetGame() {
+    window.location.reload();
+}
+
+setTimeout( () => resetGame(), 60000 );
