@@ -3,5 +3,20 @@
 {% block title%} home {% endblock %}
 
 {% block content %} 
+<table>
+{% for row in board %}
+    <tr>
 
+    {% for cell in row %}
+        <td>{{cell}}</td>
+    {% endfor %}
+
+    </tr>
+{% endfor %}
+</table>
+<br>
+<form action="#">
+    <input type="text" id="word-input">
+    <button type="submit">submit</button>
+</form>
 {% endblock %}
