@@ -1,13 +1,6 @@
 *{
     box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
 }
-/* body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
 
 td {
     border: solid red 1px;
