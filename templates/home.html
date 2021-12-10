@@ -15,8 +15,16 @@
 {% endfor %}
 </table>
 <br>
-<form action="#">
+<form action="/valid_word" id="word_form">
     <input type="text" id="word-input">
-    <button type="submit">submit</button>
+    <button type="submit" id="submit">submit</button>
 </form>
+<ul>
+    
+</ul>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/axios/dist/axios.js"></script>
+<script src="../static/scripts/wordScripts.js"></script>
 {% endblock %}
