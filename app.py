@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, session, jsonify
+from flask import Flask, request, render_template, session, jsonify, redirect
 from flask_debugtoolbar import DebugToolbarExtension
 from boggle import Boggle
 
@@ -7,6 +7,7 @@ app.config['SECRET_KEY'] = "oh-so-secret"
 debug = DebugToolbarExtension(app)
 
 boggle_game = Boggle()
+
 
 @app.route("/")
 def show_home():
@@ -21,3 +22,13 @@ def check_word():
     result = boggle_game.check_valid_word(board, word)
     json = jsonify( {"result": result } )
     return json
+
+@app.route("/game_end")
+def game_end():
+    currScore = int(request.args["score"])
+    highScore = session.get("highScore", 0)
+    if currScore > highScore:
+        session["highScore"] = currScore
+    played = session.get("played", 0)
+    session["played"] = played + 1
+    return redirect("/")

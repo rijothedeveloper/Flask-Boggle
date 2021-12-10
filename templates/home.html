@@ -25,6 +25,10 @@
 <p >
     current score: <span id=score-sec></span>
 </p>
+<p>
+    highst score so far : {{ session["highScore"] }} <br>
+    you played : {{ session["played"] }}
+</p>
 {% endblock %}
 
 {% block scripts %}
